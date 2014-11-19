@@ -29,9 +29,12 @@ message("LUA_FOUND=${LUA_FOUND}")
 message("LUA_LIBRARIES=${LUA_LIBRARIES}")
 message("LUA_INCLUDE_DIR=${LUA_INCLUDE_DIR}")    
 
-include_directories(${BINARY_DIR} ${LUA_INCLUDE_DIR})
+#add_definitions(-D LUA_USERCONFIG="${CMAKE_CURRENT_SOURCE_DIR}/src/userconfig.h")
+#add_definitions(-D LUA_USER_H="${CMAKE_CURRENT_SOURCE_DIR}/src/userconfig.h")
 
-set(SRC src/main.c)
+include_directories(${BINARY_DIR} ${LUA_INCLUDE_DIR} src)
+
+set(SRC src/main.c src/gulprun.c)
 
 add_executable(gulprun ${SRC})
 add_dependencies(gulprun lua)
